@@ -12,7 +12,4 @@ public class MenuItem {
     private String description;
     private float price;
     private String category;
-
-    public MenuItem(String number, String item1, String description1, double v, String category1) {
-    }
 }

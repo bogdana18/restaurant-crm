@@ -1,8 +1,8 @@
 package com.example.demo.controllers;
 import com.example.demo.models.MenuItem;
 import com.example.demo.services.MenuItemService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +13,13 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/menu")
-@Api(tags = "Menu Management")
+@Tag(name = "Menu Management")
 public class MenuItemController {
 
     @Autowired
     private MenuItemService menuItemService;
 
-    @ApiOperation(value = "Get all menu items")
+    @Operation(summary = "Get all menu items")
     @GetMapping
     public String getAllMenuItems(Model model) {
         List<MenuItem> menuItems = menuItemService.getAllMenuItems();
@@ -27,7 +27,7 @@ public class MenuItemController {
         return "menu";
     }
 
-    @ApiOperation(value = "Get menu item by ID")
+    @Operation(summary = "Get menu item by ID")
     @GetMapping("/{id}")
     public String getMenuItemById(@PathVariable String id, Model model) {
         Optional<MenuItem> menuItem = menuItemService.getMenuItemById(id);
@@ -35,21 +35,21 @@ public class MenuItemController {
         return "menu-detail";
     }
 
-    @ApiOperation(value = "Create new menu item")
+    @Operation(summary = "Create new menu item")
     @PostMapping
     public String createMenuItem(@ModelAttribute MenuItem menuItem) {
         menuItemService.createMenuItem(menuItem);
         return "redirect:/menu";
     }
 
-    @ApiOperation(value = "Update menu item")
+    @Operation(summary = "Update menu item")
     @PostMapping("/update")
     public String updateMenuItem(@ModelAttribute MenuItem menuItem) {
         menuItemService.updateMenuItem(menuItem);
         return "redirect:/menu";
     }
 
-    @ApiOperation(value = "Delete menu item by ID")
+    @Operation(summary = "Delete menu item by ID")
     @GetMapping("/delete/{id}")
     public String deleteMenuItem(@PathVariable String id) {
         menuItemService.deleteMenuItem(id);
