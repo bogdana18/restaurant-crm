@@ -34,8 +34,8 @@ class MenuItemServiceTest {
     void testGetAllMenuItems() {
         // Arrange
         List<MenuItem> menuItems = Arrays.asList(
-                new MenuItem("1", "Item1", "Description1", 10.0, "Category1"),
-                new MenuItem("2", "Item2", "Description2", 15.0, "Category2")
+                new MenuItem("1", "Item1", "Description1", 10, "Category1"),
+                new MenuItem("2", "Item2", "Description2", 15, "Category2")
         );
         when(menuItemRepository.findAll()).thenReturn(menuItems);
 
@@ -51,7 +51,7 @@ class MenuItemServiceTest {
     @Test
     void testGetMenuItemById() {
         // Arrange
-        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10.0, "Category1");
+        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10, "Category1");
         when(menuItemRepository.findById("1")).thenReturn(Optional.of(menuItem));
 
         // Act
@@ -66,7 +66,7 @@ class MenuItemServiceTest {
     @Test
     void testCreateMenuItem() {
         // Arrange
-        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10.0, "Category1");
+        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10, "Category1");
         when(menuItemRepository.save(menuItem)).thenReturn(menuItem);
 
         // Act
@@ -80,7 +80,7 @@ class MenuItemServiceTest {
     @Test
     void testUpdateMenuItem() {
         // Arrange
-        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10.0, "Category1");
+        MenuItem menuItem = new MenuItem("1", "Item1", "Description1", 10, "Category1");
         when(menuItemRepository.save(menuItem)).thenReturn(menuItem);
 
         // Act
